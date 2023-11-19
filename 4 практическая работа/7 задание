@@ -1,0 +1,22 @@
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        int K = 5;
+        int[] sequence = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+        // Находим первый фрагмент последовательности (четные числа)
+        var firstFragment = sequence.Where(n => n % 2 == 0);
+
+        // Находим второй фрагмент последовательности, пропуская K элементов
+        var secondFragment = sequence.Skip(K);
+
+        // Находим разности фрагментов и удаляем дубликаты
+        var reversedDifference = firstFragment.Except(secondFragment).Distinct().Reverse();
+
+        Console.WriteLine("Разность последовательностей: " + string.Join(", ", reversedDifference));
+    }
+}
